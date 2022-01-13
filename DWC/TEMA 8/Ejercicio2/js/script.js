@@ -35,12 +35,21 @@ window.onload = function () {
     });
   };
   listaProductos();
-  d.getElementById("filtrar").addEventListener(
+  d.getElementById("filtrarMenor").addEventListener(
     "click",
     (e) => {
       funcion.eliminarTabla(d.getElementsByTagName("div"));
       pintar.pintarTitulo();
-      funcion.filtrar(lista, d.getElementById("precio").value);
+      funcion.filtrarMenor(lista, d.getElementById("precio").value);
+    },
+    false
+  );
+  d.getElementById("filtrarMayor").addEventListener(
+    "click",
+    (e) => {
+      funcion.eliminarTabla(d.getElementsByTagName("div"));
+      pintar.pintarTitulo();
+      funcion.filtrarMayor(lista, d.getElementById("precio").value);
     },
     false
   );
@@ -50,20 +59,7 @@ window.onload = function () {
     (e) => {
       funcion.eliminarTabla(d.getElementsByTagName("div"));
       pintar.pintarTitulo();
-      let ordenar = async () => {
-        let tablaFiltrada = await getDocs(lista);
-        let nuevaTabla = funcion.ordenarTabla(tablaFiltrada);
-        nuevaTabla.map((objeto) => {
-          pintar.pintarTabla(
-            objeto.data().nombre,
-            objeto.data().peso,
-            objeto.data().precio,
-            objeto.data().imagen,
-            objeto.data().descripcion
-          );
-        });
-      };
-      ordenar();
+      funcion.ordenar(lista);
     },
     false
   );

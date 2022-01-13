@@ -19,7 +19,7 @@ import * as pintar from "./plantillasFirebase.js";
 function eliminarTabla(hijo) {
   while (hijo.length != 0) d.getElementById("tabla").removeChild(hijo[0]);
 }
-async function filtrar(lista, valor) {
+async function filtrarMenor(lista, valor) {
   let consulta = query(lista, where("precio", "<=", parseInt(valor)));
   let valoresFiltrados = await getDocs(consulta);
   valoresFiltrados.docs.map((objeto) => {
@@ -32,8 +32,30 @@ async function filtrar(lista, valor) {
     );
   });
 }
-function ordenarTabla(elemento) {
-  let nuevaTabla = elemento.docs.sort();
-  return nuevaTabla;
+async function filtrarMayor(lista, valor) {
+  let consulta = query(lista, where("precio", ">=", parseInt(valor)));
+  let valoresFiltrados = await getDocs(consulta);
+  valoresFiltrados.docs.map((objeto) => {
+    pintar.pintarTabla(
+      objeto.data().nombre,
+      objeto.data().peso,
+      objeto.data().precio,
+      objeto.data().imagen,
+      objeto.data().descripcion
+    );
+  });
 }
-export { eliminarTabla, filtrar, ordenarTabla };
+async function ordenar(lista) {
+  let consulta = query(orderBy(lista, "desc"));
+  let tablaFiltrada = await getDocs(consulta);
+  tablaFiltrada.docs.map((objeto) => {
+    pintar.pintarTabla(
+      objeto.data().nombre,
+      objeto.data().peso,
+      objeto.data().precio,
+      objeto.data().imagen,
+      objeto.data().descripcion
+    );
+  });
+}
+export { eliminarTabla, filtrarMenor, filtrarMayor, ordenar };
