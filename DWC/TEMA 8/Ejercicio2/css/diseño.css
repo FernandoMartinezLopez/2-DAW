@@ -1,0 +1,15 @@
+#tabla {
+  display: table;
+}
+.fila {
+  display: table-row;
+}
+.columna {
+  display: table-cell;
+  width: 400px;
+}
+
+img {
+  max-width: 15%;
+  max-height: 15%;
+}

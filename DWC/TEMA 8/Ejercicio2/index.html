@@ -4,11 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./css/diseño.css" />
     <title></title>
   </head>
   <body>
-    <button id="filtrar">Filtrar precio menor que 5</button>
-    <button id="ordenar">Ordenar</button><br /><br />
-    <script type="module" src="script.js"></script>
+    <form>
+      <input type="number" id="precio" min="0" />
+      <input type="button" id="filtrar" value="Filtrar por precio" />
+      <input type="button" id="ordenar" value="Ordenar" /><br /><br />
+    </form>
+    <p id="tabla"></p>
+    <script type="module" src="./js/script.js"></script>
+    <img src="" alt="" />
   </body>
 </html>
