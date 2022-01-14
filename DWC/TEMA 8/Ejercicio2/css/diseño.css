@@ -13,3 +13,8 @@ img {
   max-width: 15%;
   max-height: 15%;
 }
+
+form {
+  margin: 0 auto;
+  text-align: center;
+}
