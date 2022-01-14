@@ -1,12 +1,18 @@
 #tabla {
   display: table;
+  border: solid 5px black;
+  border-radius: 7px;
+  padding: 20px;
+  background-color: lightseagreen;
 }
 .fila {
   display: table-row;
+  background-color: lightseagreen;
 }
 .columna {
   display: table-cell;
   width: 400px;
+  background-color: lightseagreen;
 }
 
 img {
@@ -17,4 +23,10 @@ img {
 form {
   margin: 0 auto;
   text-align: center;
+}
+* {
+  background-color: lightsalmon;
+}
+input {
+  background-color: white;
 }
