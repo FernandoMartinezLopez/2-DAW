@@ -8,14 +8,22 @@
     <title></title>
   </head>
   <body>
+    <h1>Crear lista</h1>
+
     <form>
-      <input type="button" id="crear" value="Crear" disabled="true" />
-      <input type="button" id="anadir" value="Añadir" disabled="true" />
-      <input type="button" id="filtrar" value="Filtrar" disabled="true" />
-      <input type="button" id="ordenar" value="Ordenar" disabled="true" />
-      <input type="button" id="editar" value="Editar" disabled="true" />
+      <label for="nombreLista">Nombre de la lista: </label>
+      <input type="text" id="nombreLista" />
+      <label for="nombrePropietario">Nombre del propietario: </label>
+      <input type="text" id="nombrePropietario" />
+      <label for="fecha">Fecha: </label>
+      <input type="date" id="fecha" /><br /><br />
+      <input type="button" id="crear" value="Crear lista" />
+      <input type="button" id="listar" value="Mostrar listas" />
     </form>
-    <table id="tabla"></table>
+    <br />
+
+    <p id="tabla"></p>
+    <p id="info"></p>
     <script type="module" src="./js/script.js"></script>
   </body>
 </html>
