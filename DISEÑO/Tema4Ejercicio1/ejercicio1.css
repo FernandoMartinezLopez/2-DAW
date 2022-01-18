@@ -1,0 +1,29 @@
+#cuadricula {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-areas:
+    "a b c d e"
+    "f g h i j"
+    "k l m n o";
+  grid-column-gap: var(--valorColumna);
+  grid-row-gap: var(--valorFila);
+  border: 1px dashed #777;
+  height: 350px;
+  grid-auto-flow: column;
+  width: 950px;
+}
+.item {
+  padding: 1em;
+  border: 1px solid #000;
+  border-radius: 10px;
+  background-color: var(--color);
+}
+body {
+  font-family: Verdana, Geneva, sans-serif;
+  line-height: 2em;
+  background-color: #222;
+}
+
+* {
+  color: white;
+}

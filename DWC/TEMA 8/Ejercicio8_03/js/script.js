@@ -28,7 +28,6 @@ window.onload = function () {
     () => {
       funcion.eliminarTabla(d.getElementsByTagName("div")); //Función que borra la tabla.
       funcion.listarListas(listaClientes);
-      funcion.listaProductos(lista);
     },
     false
   );
@@ -36,6 +35,8 @@ window.onload = function () {
   d.getElementById("crear").addEventListener(
     "click",
     () => {
+      d.getElementById("info").innerHTML = "";
+      funcion.eliminarTabla(d.getElementsByTagName("div"));
       let array = funcion.mostrarArray();
       funcion.crearDocumento(
         d.getElementById("nombreLista").value,
@@ -44,6 +45,14 @@ window.onload = function () {
         array,
         listaClientes
       );
+    },
+    false
+  );
+  d.getElementById("inicio").addEventListener(
+    "click",
+    () => {
+      funcion.eliminarTabla(d.getElementsByTagName("div")); //Función que borra la tabla.
+      funcion.listaProductos(lista);
     },
     false
   );

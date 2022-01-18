@@ -31,6 +31,7 @@ function pintarTabla(nombre, peso, precio, imagen, descripcion) {
     "click",
     () => {
       funcion.almacenar(nombre, peso, precio, imagen, descripcion);
+      d.getElementById("info").innerHTML += `${nombre} añadido a la lista.`;
     },
     false
   );
@@ -47,22 +48,52 @@ function pintarTabla(nombre, peso, precio, imagen, descripcion) {
   divFila.appendChild(divInput);
   d.getElementById("tabla").appendChild(divFila);
 }
-function pintarListas(nombreProp, nombreLista, fecha, productos) {
-  console.log(productos);
+function pintarListas(
+  nombreProp,
+  nombreLista,
+  fecha,
+  productos,
+  coleccion,
+  id
+) {
   let div = d.createElement("div");
   let div2 = d.createElement("div");
   let div3 = d.createElement("div");
+  let div4 = d.createElement("div");
+  let div5 = d.createElement("div");
   div.setAttribute("class", "columna");
+  div.setAttribute("style", "color: white; font-size: 30px;");
   div2.setAttribute("class", "columna");
+  div2.setAttribute("style", "color: white; font-size: 30px;");
   div3.setAttribute("class", "columna");
+  div3.setAttribute("style", "color: white; font-size: 30px;");
+  div4.setAttribute("class", "columna");
+  div4.setAttribute("style", "color: white; font-size: 30px;");
+  div5.setAttribute("class", "columna");
+  div5.setAttribute("style", "color: white; font-size: 30px;");
   div.innerHTML = `${nombreProp}`;
   div2.innerHTML = `${nombreLista}`;
-  div3.innerHTML = `${productos}`;
+  div3.innerHTML = `${fecha}`;
+  div4.innerHTML = ``;
+  div5.innerHTML = ``;
   let divFila = d.createElement("div");
   divFila.appendChild(div);
   divFila.appendChild(div2);
   divFila.appendChild(div3);
+  divFila.appendChild(div4);
+  divFila.appendChild(div5);
   d.getElementById("tabla").appendChild(divFila);
+  productos.map((objeto) => {
+    pintarTablaNueva(
+      objeto.nombre,
+      objeto.peso,
+      objeto.precio,
+      objeto.imagen,
+      objeto.descripcion,
+      coleccion,
+      id
+    );
+  });
 }
 function pintarTablaNueva(nombre, peso, precio, imagen, descripcion) {
   let div = d.createElement("div");
@@ -84,14 +115,13 @@ function pintarTablaNueva(nombre, peso, precio, imagen, descripcion) {
   divInput.setAttribute("class", "columna");
   input.setAttribute("type", "button");
   input.setAttribute("value", "Editar");
-  /*input.addEventListener(
+  input.addEventListener(
     "click",
     () => {
-      funcion.almacenar(nombre, peso, precio, imagen, descripcion);
+      funcion.editar(coleccion, id, nombre, peso, precio, imagen, descripcion);
     },
     false
   );
-  */
   divInput.appendChild(input);
   div.innerHTML = `${nombre}`;
   div2.innerHTML = `${peso}`;

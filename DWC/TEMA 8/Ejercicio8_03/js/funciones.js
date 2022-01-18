@@ -82,8 +82,59 @@ async function listarListas(coleccion) {
       objeto.data().nombrePropietario,
       objeto.data().nombreLista,
       objeto.data().fecha,
-      objeto.data().productos
+      objeto.data().productos,
+      coleccion,
+      objeto.id
     );
+  });
+}
+
+async function editar(
+  coleccion,
+  id,
+  nombre1,
+  peso1,
+  precio1,
+  imagen1,
+  descripcion1
+) {
+  let nuevoNombre;
+  let nuevoPeso;
+  let nuevoPrecio;
+  let nuevaImagen;
+  let nuevaDescripcion;
+  if (d.getElementById("nuevoNombre").value == "") {
+    nuevoNombre = nombre1;
+  } else {
+    nuevoNombre = d.getElementById("nuevoNombre").value;
+  }
+  if (d.getElementById("nuevoPeso").value == "") {
+    nuevoPeso = peso1;
+  } else {
+    nuevoPeso = d.getElementById("nuevoPeso").value;
+  }
+  if (d.getElementById("nuevoPrecio").value == "") {
+    nuevoPrecio = precio1;
+  } else {
+    nuevoPrecio = d.getElementById("nuevoPrecio").value;
+  }
+  if (d.getElementById("nuevaImagen").value == "") {
+    nuevaImagen = imagen1;
+  } else {
+    nuevaImagen = d.getElementById("nuevaImagen").value;
+  }
+  if (d.getElementById("nuevaDescripcion").value == "") {
+    nuevaDescripcion = descripcion1;
+  } else {
+    nuevaDescripcion = d.getElementById("nuevaDescripcion").value;
+  }
+  let referencia = await doc(coleccion, id);
+  await updateDoc(prubeRef, {
+    nombre: nuevoNombre,
+    peso: nuevoPeso,
+    precio: nuevoPrecio,
+    imagen: nuevaImagen,
+    descripcion: nuevaDescripcion,
   });
 }
 export {
