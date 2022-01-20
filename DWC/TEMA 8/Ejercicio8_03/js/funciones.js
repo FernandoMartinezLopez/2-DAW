@@ -15,6 +15,8 @@ import {
   orderBy,
   limit,
   addDoc,
+  updateDoc,
+  arrayUnion,
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
 import * as pintar from "./plantillasFirebase.js";
@@ -24,6 +26,9 @@ import * as pintar from "./plantillasFirebase.js";
  */
 function eliminarTabla(hijo) {
   while (hijo.length != 0) d.getElementById("tabla").removeChild(hijo[0]);
+}
+function eliminarInput(hijo) {
+  d.getElementById("texto").removeChild(hijo);
 }
 /**
  * Función que se ejecuta al principio y pinta la tabla.
@@ -95,14 +100,17 @@ async function editar(
   nombre1,
   peso1,
   precio1,
-  imagen1,
-  descripcion1
+  descripcion1,
+  nombreProp,
+  nombreLista,
+  fecha1
 ) {
   let nuevoNombre;
   let nuevoPeso;
   let nuevoPrecio;
   let nuevaImagen;
   let nuevaDescripcion;
+  console.log(id);
   if (d.getElementById("nuevoNombre").value == "") {
     nuevoNombre = nombre1;
   } else {
@@ -119,7 +127,7 @@ async function editar(
     nuevoPrecio = d.getElementById("nuevoPrecio").value;
   }
   if (d.getElementById("nuevaImagen").value == "") {
-    nuevaImagen = imagen1;
+    nuevaImagen = "Sin imagen";
   } else {
     nuevaImagen = d.getElementById("nuevaImagen").value;
   }
@@ -129,14 +137,17 @@ async function editar(
     nuevaDescripcion = d.getElementById("nuevaDescripcion").value;
   }
   let referencia = await doc(coleccion, id);
-  await updateDoc(prubeRef, {
-    nombre: nuevoNombre,
-    peso: nuevoPeso,
-    precio: nuevoPrecio,
-    imagen: nuevaImagen,
-    descripcion: nuevaDescripcion,
+  await updateDoc(referencia, {
+    productos: {
+      nombre: nuevoNombre,
+      peso: nuevoPeso,
+      precio: nuevoPrecio,
+      imagen: nuevaImagen,
+      descripcion: nuevaDescripcion,
+    },
   });
 }
+
 export {
   eliminarTabla,
   listaProductos,
@@ -145,4 +156,6 @@ export {
   limpiarArray,
   crearDocumento,
   listarListas,
+  editar,
+  eliminarInput,
 };

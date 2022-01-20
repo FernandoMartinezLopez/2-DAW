@@ -21,22 +21,14 @@ window.onload = function () {
   const db = getFirestore(app); //Conectamos con la base de datos.
   const lista = collection(db, "Compras"); //Obtenemos los datos de la colección.
   const listaClientes = collection(db, "CrearListas");
-
+  pintar.insertarInputInicio();
   funcion.listaProductos(lista); //Función para listar los productos.
-  d.getElementById("listar").addEventListener(
-    "click",
-    () => {
-      funcion.eliminarTabla(d.getElementsByTagName("div")); //Función que borra la tabla.
-      funcion.listarListas(listaClientes);
-    },
-    false
-  );
 
   d.getElementById("crear").addEventListener(
     "click",
     () => {
       d.getElementById("info").innerHTML = "";
-      funcion.eliminarTabla(d.getElementsByTagName("div"));
+
       let array = funcion.mostrarArray();
       funcion.crearDocumento(
         d.getElementById("nombreLista").value,
@@ -48,11 +40,13 @@ window.onload = function () {
     },
     false
   );
-  d.getElementById("inicio").addEventListener(
+  d.getElementById("listar").addEventListener(
     "click",
     () => {
-      funcion.eliminarTabla(d.getElementsByTagName("div")); //Función que borra la tabla.
-      funcion.listaProductos(lista);
+      funcion.eliminarTabla(d.getElementsByTagName("div"));
+      funcion.eliminarInput(d.getElementById("form"));
+      pintar.anyadirInputEditar();
+      funcion.listarListas(listaClientes);
     },
     false
   );

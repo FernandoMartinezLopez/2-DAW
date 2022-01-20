@@ -83,6 +83,7 @@ function pintarListas(
   divFila.appendChild(div4);
   divFila.appendChild(div5);
   d.getElementById("tabla").appendChild(divFila);
+  console.log(productos);
   productos.map((objeto) => {
     pintarTablaNueva(
       objeto.nombre,
@@ -91,11 +92,25 @@ function pintarListas(
       objeto.imagen,
       objeto.descripcion,
       coleccion,
-      id
+      id,
+      nombreProp,
+      nombreLista,
+      fecha
     );
   });
 }
-function pintarTablaNueva(nombre, peso, precio, imagen, descripcion) {
+function pintarTablaNueva(
+  nombre,
+  peso,
+  precio,
+  imagen,
+  descripcion,
+  coleccion,
+  id,
+  nombreProp,
+  nombreLista,
+  fecha
+) {
   let div = d.createElement("div");
   let div2 = d.createElement("div");
   let div3 = d.createElement("div");
@@ -118,7 +133,17 @@ function pintarTablaNueva(nombre, peso, precio, imagen, descripcion) {
   input.addEventListener(
     "click",
     () => {
-      funcion.editar(coleccion, id, nombre, peso, precio, imagen, descripcion);
+      funcion.editar(
+        coleccion,
+        id,
+        nombre,
+        peso,
+        precio,
+        descripcion,
+        nombreProp,
+        nombreLista,
+        fecha
+      );
     },
     false
   );
@@ -135,4 +160,21 @@ function pintarTablaNueva(nombre, peso, precio, imagen, descripcion) {
   divFila.appendChild(divInput);
   d.getElementById("tabla").appendChild(divFila);
 }
-export { pintarTabla, pintarListas };
+
+function anyadirInputEditar() {
+  let nuevoFormulario = d.createElement("form");
+  nuevoFormulario.setAttribute("id", "form");
+  d.getElementById("titulo").innerHTML = "Editar";
+  nuevoFormulario.innerHTML =
+    "<input type='text' id='nuevoNombre' placeholder='Nombre'/><input type='text' id='nuevoPeso' placeholder='Peso'/><input type='text' id='nuevoPrecio' placeholder='Precio'/><input type='text' id='nuevaImagen' placeholder='Imagen'/><input type='text' id='nuevaDescripcion' placeholder='Descripción'/>";
+  d.getElementById("texto").appendChild(nuevoFormulario);
+}
+function insertarInputInicio() {
+  let nuevoFormulario = d.createElement("form");
+  nuevoFormulario.setAttribute("id", "form");
+  d.getElementById("titulo").innerHTML = "Crear Lista";
+  nuevoFormulario.innerHTML =
+    "<input type='text' id='nombreLista' placeholder='Nombre de la lista'/><input type='text' id='nombrePropietario' placeholder='Nombre propietario'/><input type='date' id='fecha' placeholder='Fecha'/><input type='button' id='crear' value='Crear'/><input type='button' id='listar' value='Mostrar listas'/>";
+  d.getElementById("texto").appendChild(nuevoFormulario);
+}
+export { pintarTabla, pintarListas, anyadirInputEditar, insertarInputInicio };
