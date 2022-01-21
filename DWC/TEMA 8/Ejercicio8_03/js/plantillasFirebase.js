@@ -48,6 +48,10 @@ function pintarTabla(nombre, peso, precio, imagen, descripcion) {
   divFila.appendChild(divInput);
   d.getElementById("tabla").appendChild(divFila);
 }
+
+/**
+ * Función para pintar en pantalla todas las tablas.
+ */
 function pintarListas(
   nombreProp,
   nombreLista,
@@ -99,6 +103,10 @@ function pintarListas(
     );
   });
 }
+
+/**
+ * Función para pintar los productos de las tablas.
+ */
 function pintarTablaNueva(
   nombre,
   peso,
@@ -160,7 +168,7 @@ function pintarTablaNueva(
   divFila.appendChild(divInput);
   d.getElementById("tabla").appendChild(divFila);
 }
-
+//Función para añadir los input para editar.
 function anyadirInputEditar() {
   let nuevoFormulario = d.createElement("form");
   nuevoFormulario.setAttribute("id", "form");
@@ -169,6 +177,7 @@ function anyadirInputEditar() {
     "<input type='text' id='nuevoNombre' placeholder='Nombre'/><input type='text' id='nuevoPeso' placeholder='Peso'/><input type='text' id='nuevoPrecio' placeholder='Precio'/><input type='text' id='nuevaImagen' placeholder='Imagen'/><input type='text' id='nuevaDescripcion' placeholder='Descripción'/>";
   d.getElementById("texto").appendChild(nuevoFormulario);
 }
+//Función para añadir los input de crear tabla.
 function insertarInputInicio() {
   let nuevoFormulario = d.createElement("form");
   nuevoFormulario.setAttribute("id", "form");

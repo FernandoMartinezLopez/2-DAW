@@ -21,9 +21,10 @@ window.onload = function () {
   const db = getFirestore(app); //Conectamos con la base de datos.
   const lista = collection(db, "Compras"); //Obtenemos los datos de la colección.
   const listaClientes = collection(db, "CrearListas");
-  pintar.insertarInputInicio();
+  pintar.insertarInputInicio(); //Funcion para añadir los inputs.
   funcion.listaProductos(lista); //Función para listar los productos.
 
+  //Evento para el boton crear, que sirve para crear una nueva lista.
   d.getElementById("crear").addEventListener(
     "click",
     () => {
@@ -40,6 +41,8 @@ window.onload = function () {
     },
     false
   );
+
+  //Enevnto para el boton mostar listas,para que enseñe todas las listas.
   d.getElementById("listar").addEventListener(
     "click",
     () => {

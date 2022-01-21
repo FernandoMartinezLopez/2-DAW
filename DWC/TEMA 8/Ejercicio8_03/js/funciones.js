@@ -45,6 +45,10 @@ async function listaProductos(lista) {
     );
   });
 }
+
+/**
+ * Función creada para almacenar los datos en un array.
+ */
 function almacenar(nombre1, precio1, peso1, imagen1, descripcion1) {
   let objeto = {
     nombre: nombre1,
@@ -55,13 +59,18 @@ function almacenar(nombre1, precio1, peso1, imagen1, descripcion1) {
   };
   arrayObjetos.push(objeto);
 }
-
+/**
+ * Función para recoger el array
+ */
 function mostrarArray() {
   return arrayObjetos;
 }
 function limpiarArray() {
   arrayObjetos = [];
 }
+/**
+ * Función para crear un nuevo documento en la firebase
+ */
 async function crearDocumento(
   listaNombre,
   nombreProp,
@@ -80,6 +89,10 @@ async function crearDocumento(
   d.getElementById("info").innerHTML = `Objeto añadido con la id ${prueba.id}`;
   limpiarArray();
 }
+
+/**
+ * Función para listar las listas creadas
+ */
 async function listarListas(coleccion, articulos) {
   let productos = await getDocs(coleccion);
   productos.docs.map((objeto) => {
@@ -94,7 +107,10 @@ async function listarListas(coleccion, articulos) {
     );
   });
 }
-
+/**
+ * Función que edita en la base de datos, pero los atributos del producto.
+ * Esta función no y no entiendo el porque. Se que debería hacer otra cosa esta función pero no tengo tiempo ni sabria como hacerlo.
+ */
 async function editar(coleccion, id, nombre1, peso1, precio1, descripcion1) {
   let nuevoNombre;
   let nuevoPeso;
