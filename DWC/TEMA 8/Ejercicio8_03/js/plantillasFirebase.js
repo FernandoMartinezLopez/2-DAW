@@ -83,8 +83,8 @@ function pintarListas(
   divFila.appendChild(div4);
   divFila.appendChild(div5);
   d.getElementById("tabla").appendChild(divFila);
-  console.log(productos);
-  productos.map((objeto) => {
+  let productosParseados = JSON.parse(productos);
+  productosParseados.map((objeto) => {
     pintarTablaNueva(
       objeto.nombre,
       objeto.peso,

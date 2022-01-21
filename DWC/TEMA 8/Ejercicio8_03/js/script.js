@@ -46,7 +46,7 @@ window.onload = function () {
       funcion.eliminarTabla(d.getElementsByTagName("div"));
       funcion.eliminarInput(d.getElementById("form"));
       pintar.anyadirInputEditar();
-      funcion.listarListas(listaClientes);
+      funcion.listarListas(listaClientes, lista);
     },
     false
   );

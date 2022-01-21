@@ -74,13 +74,13 @@ async function crearDocumento(
     nombreLista: listaNombre,
     nombrePropietario: nombreProp,
     fecha: fechaLista,
-    productos: array,
+    productos: JSON.stringify(array),
   };
   let prueba = await addDoc(coleccion, objetoAnyadir);
   d.getElementById("info").innerHTML = `Objeto añadido con la id ${prueba.id}`;
   limpiarArray();
 }
-async function listarListas(coleccion) {
+async function listarListas(coleccion, articulos) {
   let productos = await getDocs(coleccion);
   productos.docs.map((objeto) => {
     pintar.pintarListas(
@@ -89,22 +89,13 @@ async function listarListas(coleccion) {
       objeto.data().fecha,
       objeto.data().productos,
       coleccion,
-      objeto.id
+      objeto.id,
+      articulos
     );
   });
 }
 
-async function editar(
-  coleccion,
-  id,
-  nombre1,
-  peso1,
-  precio1,
-  descripcion1,
-  nombreProp,
-  nombreLista,
-  fecha1
-) {
+async function editar(coleccion, id, nombre1, peso1, precio1, descripcion1) {
   let nuevoNombre;
   let nuevoPeso;
   let nuevoPrecio;
@@ -136,15 +127,17 @@ async function editar(
   } else {
     nuevaDescripcion = d.getElementById("nuevaDescripcion").value;
   }
+  let productosEditar = {
+    nombre: nuevoNombre,
+    peso: nuevoPeso,
+    precio: nuevoPrecio,
+    imagen: nuevaImagen,
+    descripcion: nuevaDescripcion,
+  };
+  let productosString = JSON.stringify(productosEditar);
   let referencia = await doc(coleccion, id);
   await updateDoc(referencia, {
-    productos: {
-      nombre: nuevoNombre,
-      peso: nuevoPeso,
-      precio: nuevoPrecio,
-      imagen: nuevaImagen,
-      descripcion: nuevaDescripcion,
-    },
+    productos: arrayUnion(productosString),
   });
 }
 
