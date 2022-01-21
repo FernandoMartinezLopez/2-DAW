@@ -46,6 +46,7 @@ window.onload = function () {
   d.getElementById("listar").addEventListener(
     "click",
     () => {
+      d.getElementById("info").innerHTML = "";
       funcion.eliminarTabla(d.getElementsByTagName("div"));
       funcion.eliminarInput(d.getElementById("form"));
       pintar.anyadirInputEditar();
