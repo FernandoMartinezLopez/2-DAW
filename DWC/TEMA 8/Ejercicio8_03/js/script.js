@@ -17,6 +17,10 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
 window.onload = function () {
+  /**
+   * Al final dejo así la práctica, con la cual hay un botón para editar los valores de los productos, pero luego me da error al imprimir el producto editado.
+   * No tiene la función de añadir o borrar por que no me da tiempo a implementarlas.
+   */
   const d = document;
   const db = getFirestore(app); //Conectamos con la base de datos.
   const lista = collection(db, "Compras"); //Obtenemos los datos de la colección.

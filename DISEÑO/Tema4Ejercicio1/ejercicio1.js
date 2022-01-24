@@ -6,6 +6,10 @@ window.onload = function () {
     d.getElementById("spangridRowGap").innerHTML =
       d.getElementById("filas").value;
     d.getElementById("valorRow").innerHTML = d.getElementById("filas").value;
+    modificarGap(
+      d.getElementById("filas").value,
+      d.getElementById("columnas").value
+    );
   };
 
   d.getElementById("columnas").onchange = function () {
@@ -13,9 +17,15 @@ window.onload = function () {
       d.getElementById("columnas").value;
     d.getElementById("valorColumn").innerHTML =
       d.getElementById("columnas").value;
+    modificarGap(
+      d.getElementById("filas").value,
+      d.getElementById("columnas").value
+    );
   };
 
   function modificarGap(gridRow, gridColumn) {
-    d.get;
+    d.getElementById(
+      "cuadricula"
+    ).style.gridGap = `${gridRow}px ${gridColumn}px`;
   }
 };
