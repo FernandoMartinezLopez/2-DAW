@@ -1,7 +1,7 @@
 "use strict";
 var d = document;
 var semaforo = true;
-
+var contador = 0;
 import * as funcion from "./funciones.js";
 /**
  * Sé que no es el mejor diseño, pero hice la tabla sin tables y asi es como se me quedó.
@@ -58,12 +58,14 @@ function pintarListas(
   fecha,
   productos,
   coleccion,
-  id
+  id,
+  articulos
 ) {
   let div = d.createElement("div");
   let div2 = d.createElement("div");
   let div3 = d.createElement("div");
   let div4 = d.createElement("div");
+  let botonAnadir = d.createElement("input");
   let div5 = d.createElement("div");
   div.setAttribute("class", "columna");
   div.setAttribute("style", "color: white; font-size: 30px;");
@@ -73,6 +75,8 @@ function pintarListas(
   div3.setAttribute("style", "color: white; font-size: 30px;");
   div4.setAttribute("class", "columna");
   div4.setAttribute("style", "color: white; font-size: 30px;");
+  botonAnadir.setAttribute("type", "button");
+  botonAnadir.setAttribute("value", "Añadir productos");
   div5.setAttribute("class", "columna");
   div5.setAttribute("style", "color: white; font-size: 30px;");
   div.innerHTML = `${nombreProp}`;
@@ -81,27 +85,51 @@ function pintarListas(
   div4.innerHTML = ``;
   div5.innerHTML = ``;
   let divFila = d.createElement("div");
+  div4.appendChild(botonAnadir);
   divFila.appendChild(div);
   divFila.appendChild(div2);
   divFila.appendChild(div3);
   divFila.appendChild(div4);
   divFila.appendChild(div5);
   d.getElementById("tabla").appendChild(divFila);
-  let productosParseados = JSON.parse(productos);
-  productosParseados.map((objeto) => {
-    pintarTablaNueva(
-      objeto.nombre,
-      objeto.peso,
-      objeto.precio,
-      objeto.imagen,
-      objeto.descripcion,
-      coleccion,
-      id,
-      nombreProp,
-      nombreLista,
-      fecha
-    );
-  });
+  for (let i = 0; i < productos.length; i++) {
+    let productosParseados = JSON.parse(productos[contador]);
+    productosParseados.map((objeto) => {
+      pintarTablaNueva(
+        objeto.nombre,
+        objeto.peso,
+        objeto.precio,
+        objeto.imagen,
+        objeto.descripcion,
+        coleccion,
+        id,
+        nombreProp,
+        nombreLista,
+        fecha
+      );
+    });
+  }
+  botonAnadir.addEventListener(
+    "click",
+    () => {
+      d.getElementById("titulo").innerHTML = "Añadir";
+      funcion.eliminarTabla(d.getElementsByTagName("div"));
+      funcion.eliminarInput(d.getElementById("form"));
+      funcion.listaProductos(articulos);
+      let nuevoBoton = d.createElement("input");
+      nuevoBoton.setAttribute("type", "button");
+      nuevoBoton.setAttribute("value", "Añadir a la lista");
+      d.body.appendChild(nuevoBoton);
+      nuevoBoton.addEventListener(
+        "click",
+        () => {
+          funcion.anadirLista(coleccion, id);
+        },
+        false
+      );
+    },
+    false
+  );
 }
 
 /**

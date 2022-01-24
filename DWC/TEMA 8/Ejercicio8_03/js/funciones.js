@@ -83,7 +83,7 @@ async function crearDocumento(
     nombreLista: listaNombre,
     nombrePropietario: nombreProp,
     fecha: fechaLista,
-    productos: JSON.stringify(array),
+    productos: [JSON.stringify(array)],
   };
   let prueba = await addDoc(coleccion, objetoAnyadir);
   d.getElementById("info").innerHTML = `Objeto añadido con la id ${prueba.id}`;
@@ -117,7 +117,6 @@ async function editar(coleccion, id, nombre1, peso1, precio1, descripcion1) {
   let nuevoPrecio;
   let nuevaImagen;
   let nuevaDescripcion;
-  console.log(id);
   if (d.getElementById("nuevoNombre").value == "") {
     nuevoNombre = nombre1;
   } else {
@@ -157,6 +156,15 @@ async function editar(coleccion, id, nombre1, peso1, precio1, descripcion1) {
   });
 }
 
+async function anadirLista(coleccion, id) {
+  let arrayParseado = JSON.stringify(arrayObjetos);
+  console.log(arrayParseado);
+  let referencia = await doc(coleccion, id);
+  await updateDoc(referencia, {
+    productos: arrayUnion(arrayParseado),
+  });
+}
+
 export {
   eliminarTabla,
   listaProductos,
@@ -167,4 +175,5 @@ export {
   listarListas,
   editar,
   eliminarInput,
+  anadirLista,
 };
