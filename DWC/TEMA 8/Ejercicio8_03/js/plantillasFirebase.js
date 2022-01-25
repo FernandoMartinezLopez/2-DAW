@@ -1,7 +1,6 @@
 "use strict";
 var d = document;
 var semaforo = true;
-var contador = 0;
 import * as funcion from "./funciones.js";
 /**
  * Sé que no es el mejor diseño, pero hice la tabla sin tables y asi es como se me quedó.
@@ -93,7 +92,7 @@ function pintarListas(
   divFila.appendChild(div5);
   d.getElementById("tabla").appendChild(divFila);
   for (let i = 0; i < productos.length; i++) {
-    let productosParseados = JSON.parse(productos[contador]);
+    let productosParseados = JSON.parse(productos[i]);
     productosParseados.map((objeto) => {
       pintarTablaNueva(
         objeto.nombre,
