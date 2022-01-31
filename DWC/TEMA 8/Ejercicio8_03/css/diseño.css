@@ -1,4 +1,4 @@
-#tabla {
+.tabla {
   display: table;
   border: solid 5px black;
   border-radius: 7px;
@@ -35,6 +35,10 @@ h1 {
   text-align: center;
 }
 p {
+  margin: 0 auto;
+  text-align: center;
+}
+.login {
   margin: 0 auto;
   text-align: center;
 }

@@ -1,5 +1,6 @@
 "use strict";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 const firebaseConfig = {
   apiKey: "AIzaSyC6Nywp21V0J1VBth6DYnOvkuLsWy2UVlU",
 
@@ -14,4 +15,5 @@ const firebaseConfig = {
   appId: "1:940579217061:web:1fbed463cbb5db41b5774c",
 };
 const app = initializeApp(firebaseConfig);
-export { app };
+const autentificacion = getAuth(app);
+export { app, autentificacion };

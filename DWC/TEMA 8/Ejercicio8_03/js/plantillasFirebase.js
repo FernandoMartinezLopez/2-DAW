@@ -1,6 +1,7 @@
 "use strict";
 var d = document;
 var semaforo = true;
+var rol;
 import * as funcion from "./funciones.js";
 /**
  * Sé que no es el mejor diseño, pero hice la tabla sin tables y asi es como se me quedó.
@@ -207,10 +208,93 @@ function anyadirInputEditar() {
 //Función para añadir los input de crear tabla.
 function insertarInputInicio() {
   let nuevoFormulario = d.createElement("form");
+  nuevoFormulario.setAttribute("class", "form");
   nuevoFormulario.setAttribute("id", "form");
   d.getElementById("titulo").innerHTML = "Crear Lista";
+  d.getElementById("tabla").setAttribute("class", "tabla");
   nuevoFormulario.innerHTML =
     "<input type='text' id='nombreLista' placeholder='Nombre de la lista'/><input type='text' id='nombrePropietario' placeholder='Nombre propietario'/><input type='date' id='fecha' placeholder='Fecha'/><input type='button' id='crear' value='Crear'/><input type='button' id='listar' value='Mostrar listas'/>";
   d.getElementById("texto").appendChild(nuevoFormulario);
 }
-export { pintarTabla, pintarListas, anyadirInputEditar, insertarInputInicio };
+function pintarInputLogin(lista, listaClientes, listaLogin) {
+  let titulo = d.createElement("h1");
+  titulo.innerHTML = "Login";
+  let inputNombre = d.createElement("input");
+  let inputContrasenya = d.createElement("input");
+  let rolAdmin = d.createElement("input");
+  let rolUsuario = d.createElement("input");
+  let labelAdmin = d.createElement("label");
+  let labelUsuario = d.createElement("label");
+  labelAdmin.innerHTML = "Admin";
+  labelUsuario.innerHTML = "Usuario";
+  rolAdmin.setAttribute("type", "radio");
+  rolUsuario.setAttribute("type", "radio");
+  rolAdmin.setAttribute("id", "admin");
+  rolUsuario.setAttribute("id", "usuario");
+  rolAdmin.setAttribute("name", "rol");
+  rolUsuario.setAttribute("name", "rol");
+  rolAdmin.setAttribute("value", "Admin");
+  rolUsuario.setAttribute("value", "Usuario");
+  inputNombre.setAttribute("id", "nombre");
+  inputNombre.setAttribute("placeholder", "Correo");
+  inputContrasenya.setAttribute("placeholder", "Contraseña");
+  inputNombre.setAttribute("class", "login");
+  inputContrasenya.setAttribute("id", "contrasenya");
+  inputContrasenya.setAttribute("type", "password");
+  inputContrasenya.setAttribute("class", "login");
+  let botonCrear = d.createElement("input");
+  let botonLogin = d.createElement("input");
+  botonCrear.setAttribute("type", "button");
+  botonCrear.setAttribute("class", "login");
+  botonLogin.setAttribute("type", "button");
+  botonLogin.setAttribute("class", "login");
+  botonCrear.setAttribute("value", "Crear cuenta");
+  botonLogin.setAttribute("value", "Login");
+  botonCrear.addEventListener(
+    "click",
+    () => {
+      funcion.eliminarInputLogin();
+      funcion.crearUsuario(inputNombre.value, inputContrasenya.value);
+      funcion.anadirClientes(inputNombre.value);
+      funcion.mostrarTodo(lista, listaClientes);
+    },
+    false
+  );
+  botonLogin.addEventListener(
+    "click",
+    () => {
+      funcion.iniciarSesion(inputNombre.value, inputContrasenya.value);
+      if (funcion.filtrarNombre(inputNombre.value, listaClientes)) {
+        funcion.eliminarInputLogin();
+        funcion.mostrarTodo(
+          lista,
+          listaClientes,
+          listaLogin,
+          inputNombre.value
+        );
+      } else {
+        console.log("Error");
+      }
+    },
+    false
+  );
+  let divContenedor = d.createElement("div");
+  divContenedor.setAttribute("id", "divLogin");
+  divContenedor.appendChild(titulo);
+  divContenedor.appendChild(inputNombre);
+  divContenedor.appendChild(inputContrasenya);
+  divContenedor.appendChild(botonCrear);
+  divContenedor.appendChild(botonLogin);
+  divContenedor.appendChild(rolAdmin);
+  divContenedor.appendChild(labelAdmin);
+  divContenedor.appendChild(rolUsuario);
+  divContenedor.appendChild(labelUsuario);
+  d.body.appendChild(divContenedor);
+}
+export {
+  pintarTabla,
+  pintarListas,
+  anyadirInputEditar,
+  insertarInputInicio,
+  pintarInputLogin,
+};
