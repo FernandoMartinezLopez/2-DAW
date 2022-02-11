@@ -1,20 +1,80 @@
-header {
-  background-color: violet;
-  border-radius: 5px;
-}
+@media screen and (min-width: 1366px) {
+  header {
+    background-color: violet;
+    border-radius: 5px;
+    text-align: center;
+  }
 
-ul {
-  background-color: rgb(197, 23, 197);
-  border-radius: 5px;
-}
+  ul {
+    background-color: rgb(197, 23, 197);
+    border-radius: 5px;
+    float: left;
+    margin: 30px;
+    padding: 30px;
+  }
 
-article {
-  background-color: rgb(211, 87, 5);
-  border-radius: 5px;
-  color: white;
-}
+  article {
+    background-color: rgb(211, 87, 5);
+    border-radius: 5px;
+    color: white;
+    float: right;
+    margin: 30px;
+    padding: 30px;
+    height: max-content;
+  }
 
-footer {
-  background-color: rgb(1, 68, 253);
-  border-radius: 5px;
+  footer {
+    background-color: rgb(1, 68, 253);
+    border-radius: 5px;
+  }
+  select {
+    display: none;
+  }
+  section {
+    display: flex;
+  }
+}
+@media screen and (max-width: 1366px) and (min-width: 936px) {
+  header {
+    background-color: violet;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  ul {
+    background-color: rgb(197, 23, 197);
+    border-radius: 5px;
+    float: left;
+    margin: 30px;
+    padding: 30px;
+  }
+
+  article:nth-child(1),
+  article:nth-child(2) {
+    background-color: rgb(211, 87, 5);
+    border-radius: 5px;
+    color: white;
+    margin: 30px;
+    padding: 30px;
+    height: max-content;
+  }
+  article:nth-child(3) {
+    background-color: rgb(211, 87, 5);
+    border-radius: 5px;
+    color: white;
+    margin: 30px;
+    padding: 30px;
+    height: max-content;
+    position: fixed;
+  }
+  footer {
+    background-color: rgb(1, 68, 253);
+    border-radius: 5px;
+  }
+  select {
+    display: none;
+  }
+  section {
+    display: flex;
+  }
 }
