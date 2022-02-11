@@ -1,0 +1,20 @@
+header {
+  background-color: violet;
+  border-radius: 5px;
+}
+
+ul {
+  background-color: rgb(197, 23, 197);
+  border-radius: 5px;
+}
+
+article {
+  background-color: rgb(211, 87, 5);
+  border-radius: 5px;
+  color: white;
+}
+
+footer {
+  background-color: rgb(1, 68, 253);
+  border-radius: 5px;
+}

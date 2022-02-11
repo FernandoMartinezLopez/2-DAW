@@ -1,0 +1,29 @@
+.cabecera {
+  background-color: darkgoldenrod;
+}
+#tabla,
+td,
+th {
+  border: 1px solid black;
+}
+#tabla {
+  border-collapse: collapse;
+  width: 50%;
+  counter-reset: letras;
+}
+#tabla .hover:hover {
+  background-color: orange;
+}
+body {
+  counter-reset: numero;
+}
+.hover {
+  counter-increment: numero;
+}
+.cabecera:nth-child(n + 2)::before {
+  counter-increment: letras;
+  content: counter(letras, upper-alpha);
+}
+.numero::before {
+  content: counter(numero);
+}

@@ -261,6 +261,10 @@ async function anadirClientes(nombre, rol) {
   let objetoAnyadir = await addDoc();
 }
 
+function eliminarInputSesion() {
+  d.body.removeChild(d.getElementById("CrearSesion"));
+}
+
 export {
   eliminarTabla,
   listaProductos,
@@ -279,4 +283,5 @@ export {
   iniciarSesion,
   filtrarNombre,
   anadirClientes,
+  eliminarInputSesion,
 };

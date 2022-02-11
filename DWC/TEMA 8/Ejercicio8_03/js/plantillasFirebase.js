@@ -254,9 +254,12 @@ function pintarInputLogin(lista, listaClientes, listaLogin) {
     "click",
     () => {
       funcion.eliminarInputLogin();
-      funcion.crearUsuario(inputNombre.value, inputContrasenya.value);
-      funcion.anadirClientes(inputNombre.value);
-      funcion.mostrarTodo(lista, listaClientes);
+      pintarCrearSesion(
+        inputNombre.value,
+        inputContrasenya.value,
+        lista,
+        listaClientes
+      );
     },
     false
   );
@@ -290,6 +293,71 @@ function pintarInputLogin(lista, listaClientes, listaLogin) {
   divContenedor.appendChild(rolUsuario);
   divContenedor.appendChild(labelUsuario);
   d.body.appendChild(divContenedor);
+}
+function pintarCrearSesion(lista, listaClientes) {
+  pintarInputsCrearSesion(lista, listaClientes);
+}
+
+function pintarInputsCrearSesion(lista, listaClientes) {
+  let formulario = d.createElement("form");
+  let inputCorreo = d.createElement("input");
+  let inputContrasenya = d.createElement("input");
+  let inputNombre = d.createElement("input");
+  let inputRol = d.createElement("input");
+  let inputRol2 = d.createElement("input");
+  let labelRol = d.createElement("label");
+  let labelRol2 = d.createElement("label");
+  let boton = d.createElement("button");
+  formulario.setAttribute("id", "CrearSesion");
+  inputCorreo.setAttribute("type", "text");
+  inputCorreo.setAttribute("placeholder", "Correo");
+  inputContrasenya.setAttribute("type", "password");
+  inputContrasenya.setAttribute("placeholder", "Contraseña");
+  inputNombre.setAttribute("type", "text");
+  inputNombre.setAttribute("placeholder", "Nombre");
+  inputRol.setAttribute("type", "radio");
+  inputRol2.setAttribute("type", "radio");
+  inputRol.setAttribute("value", "Admin");
+  inputRol2.setAttribute("value", "Usuario");
+  inputRol.setAttribute("name", "rol");
+  inputRol2.setAttribute("name", "rol");
+  labelRol.innerHTML("Admin");
+  labelRol2.innerHTML("Usuario");
+  boton.addEventListener(
+    "click",
+    () => {
+      if (
+        inputCorreo.value == "" ||
+        inputContrasenya.value == "" ||
+        inputNombre.value == ""
+      ) {
+        inputCorreo.value = "";
+        inputContrasenya.value = "";
+        inputNombre.value = "";
+      } else {
+        funcion.crearUsuario(inputCorreo.value, inputContrasenya.value);
+        if (inputRol != null) {
+          funcion.anadirClientes(inputNombre.value, inputRol.value);
+          funcion.mostrarTodo(lista, listaClientes);
+          funcion.eliminarInputSesion();
+        } else {
+          funcion.anadirClientes(inputNombre.value, inputRol2.value);
+          funcion.mostrarTodo(lista, listaClientes);
+          funcion.eliminarInputSesion();
+        }
+      }
+    },
+    false
+  );
+  formulario.appendChild(inputCorreo);
+  formulario.appendChild(inputContrasenya);
+  formulario.appendChild(inputNombre);
+  formulario.appendChild(labelRol);
+  formulario.appendChild(inputRol);
+  formulario.appendChild(labelRol2);
+  formulario.appendChild(inputRol2);
+  formulario.appendChild(boton);
+  d.body.appendChild(formulario);
 }
 export {
   pintarTabla,
